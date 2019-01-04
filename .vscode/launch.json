@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SystemHost",
+            "request": "launch",
+            "mainClass": "adamf59.SystemHostController.SystemHost",
+            "projectName": "jagsat-onboard"
+        }
+    ]
+}
