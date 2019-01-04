@@ -2,16 +2,16 @@
 Onboard systems utilized by the JagSat Floater Balloon deployed by Windham High School
 
 # Control System Layout
-Java VM
-		System Host Controller
-				Executed upon startup, responsible for starting all controllers
-			Subsystem Controller
-				Avionics Subsystem	
-					Ballast
-					Parachute Disconnect
-				Communications Subsystem
-				Sensor Subsystem
-            (Handles the inputs from the Input Controller mainly...)
+	Java VM
+			System Host Controller
+					Executed upon startup, responsible for starting all controllers
+				Subsystem Controller
+					Avionics Subsystem	
+						Ballast
+						Parachute Disconnect
+					Communications Subsystem
+					Sensor Subsystem
+		    (Handles the inputs from the Input Controller mainly...)
             
 			IO Controller
 				Input Controller
