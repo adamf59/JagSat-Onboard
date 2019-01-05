@@ -23,7 +23,8 @@ public class DispatcherService implements Runnable {
         SystemHost.consolePrintln("OK", "System Dispatcher Initialized Success");
 
     }
-
+    
+    @SuppressWarnings("static-access")
     @Override
     public void run() {
 

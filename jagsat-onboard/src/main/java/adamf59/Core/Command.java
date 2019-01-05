@@ -49,6 +49,7 @@ public abstract class Command implements Runnable {
          * @param millis
          * @throws InterruptedException
          */
+    @SuppressWarnings("static-access")
     public final void sleep(int millis)  {
         try {
             instanceThread.sleep(millis);

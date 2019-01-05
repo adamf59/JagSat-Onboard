@@ -1,0 +1,35 @@
+package adamf59.SystemHostController.System;
+
+import adamf59.SystemHostController.SystemHost;
+
+public class SystemController implements Runnable {
+
+    private Thread instanceThread;
+
+    public SystemController() {
+        instanceThread = new Thread(this, "JAGSAT_SYSTEM_CONTROLLER");
+        SystemHost.consolePrintln("OK", "Initializing System Controller");
+    }
+
+    public void start() throws Exception {
+        try {
+            instanceThread.start();
+        } catch(Exception e) {
+            throw(new Exception("The System Controller failed to start and take control. Terminating all systems..."));
+        }
+    }
+
+    @Override
+    public void run() {
+
+
+        while(true) {
+
+        }
+    
+    
+    }
+
+
+
+}
