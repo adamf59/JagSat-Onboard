@@ -3,6 +3,7 @@ package adamf59.SystemHostController;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
 import adamf59.SystemHostController.System.DispatcherService;
@@ -53,7 +54,7 @@ public class SystemHost {
             s_avionics = new Avionics(0);
             s_communications = new Communications(1);
 
-
+            GPIO.initGPIOController();
          
 
         } catch(Exception e) {
