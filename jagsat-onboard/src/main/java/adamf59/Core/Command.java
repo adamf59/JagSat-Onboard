@@ -1,3 +1,9 @@
+/**
+ * [[[JAGSAT CORE]]]
+* JAGSAT MISSION 2019
+* Written by Adam Frank, with references to contributors at GitHub and Stack Overflow
+*  Updates at GitHub.com/adamf59
+*/
 package adamf59.Core;
 
 import adamf59.SystemHostController.SystemHost;

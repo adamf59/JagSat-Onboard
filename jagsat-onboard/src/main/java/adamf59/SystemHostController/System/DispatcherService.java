@@ -1,5 +1,10 @@
 package adamf59.SystemHostController.System;
 
+/**
+* JAGSAT MISSION 2019
+* Written by Adam Frank, with references to contributors at GitHub and Stack Overflow
+*  Updates at GitHub.com/adamf59
+*/
 import adamf59.SystemHostController.SystemHost;
 
 public class DispatcherService implements Runnable {
