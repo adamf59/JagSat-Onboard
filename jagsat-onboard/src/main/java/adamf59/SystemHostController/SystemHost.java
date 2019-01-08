@@ -6,6 +6,7 @@
 package adamf59.SystemHostController;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import adamf59.SystemHostController.IO.GPIO;
@@ -30,6 +31,12 @@ public class SystemHost {
         consolePrintln("OK", "JagSat Flight Computer v1.0");
         consolePrintln("OK", "Written by Adam Frank, deployed by Windham High School JagSat Team");
         
+        if(Arrays.toString(args).contains("-JFSL")) {
+            consolePrintln("OK", "Verified Jaguar Flight Systems Launcher... Hello JFSL!");
+
+        }
+
+
 
         sys_init();
         

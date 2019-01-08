@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Debug (Launch) with Arguments Prompt",
+            "request": "launch",
+            "mainClass": "",
+            "args": "${command:SpecifyProgramArgs}"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - SystemHost",
             "request": "launch",
             "mainClass": "adamf59.SystemHostController.SystemHost",
