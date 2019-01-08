@@ -19,7 +19,7 @@ public class Avionics extends Subsystem {
 
     @Override
     public void execute() {
-           // SystemHost.consolePrintln("OK", "Avionics subsystem updating...");
+            SystemHost.consolePrintln("OK", "Avionics subsystem updating...");
             try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

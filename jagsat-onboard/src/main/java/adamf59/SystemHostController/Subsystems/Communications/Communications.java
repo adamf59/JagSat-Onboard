@@ -17,7 +17,12 @@ public class Communications extends Subsystem {
 
     @Override
     public void execute() {
-        
+        SystemHost.consolePrintln("OK", "Communications subsystem updating...");
+        try {
+        Thread.sleep(3200);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
     }
 
     @Override
