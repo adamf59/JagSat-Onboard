@@ -1,5 +1,12 @@
 {
     "configurations": [
+    {
+        "type": "java",
+        "name": "Debug (Launch) with Certified Launcher Arg",
+        "request": "launch",
+        "mainClass": "",
+        "args": "-JFSL"
+    },
         {
             "type": "java",
             "name": "Debug (Launch) with Arguments Prompt",
