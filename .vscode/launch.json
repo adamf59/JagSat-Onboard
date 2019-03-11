@@ -1,45 +1,26 @@
-<<<<<<< HEAD
 {
     "configurations": [
+        
     {
         "type": "java",
-        "name": "Debug (Launch) with Certified Launcher Arg",
+        "name": "Debug as Certified Launcher",
         "request": "launch",
         "mainClass": "",
         "args": "-JFSL"
     },
         {
             "type": "java",
-            "name": "Debug (Launch) with Arguments Prompt",
+            "name": "Debug with Arg Prompt",
             "request": "launch",
             "mainClass": "",
             "args": "${command:SpecifyProgramArgs}"
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - SystemHost",
+            "name": "Debug as IDE",
             "request": "launch",
             "mainClass": "adamf59.SystemHostController.SystemHost",
             "projectName": "jagsat-onboard"
         }
     ]
-=======
-{
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Debug (Launch) with Arguments Prompt",
-            "request": "launch",
-            "mainClass": "",
-            "args": "${command:SpecifyProgramArgs}"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - SystemHost",
-            "request": "launch",
-            "mainClass": "adamf59.SystemHostController.SystemHost",
-            "projectName": "jagsat-onboard"
-        }
-    ]
->>>>>>> a3749e3a9e46e9543be5583593f6743c712e3ee1
 }

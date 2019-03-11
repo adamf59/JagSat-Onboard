@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
 * JAGSAT MISSION 2019
 * Written by Adam Frank, with references to contributors at GitHub and Stack Overflow
@@ -45,57 +44,4 @@ public class GPIO {
         GPIOController.shutdown();
     }
 
-=======
-/**
-* JAGSAT MISSION 2019
-* Written by Adam Frank, with references to contributors at GitHub and Stack Overflow
-*  Updates at GitHub.com/adamf59
-*/
-package adamf59.SystemHostController.IO;
-
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinAnalogOutput;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.Pin;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
-
-import adamf59.SystemHostController.SystemHost;
-
-public class GPIO {
-
-    private static GpioController GPIOController;
-
-        /**
-         * Initialize the GPIO Controller Object. This is a singleton!
-         */
-    public static int initGPIOController() {
-        try {
-            SystemHost.consolePrintln("OK", "Starting up GPIOController");
-            GPIOController = GpioFactory.getInstance();
-            
-        } catch(UnsatisfiedLinkError e) {
-            SystemHost.consolePrintln("ERR", "Failed to attach GPIOController.");
-
-                return 0;
-        }
-            return 1;
-    }
-        /**
-         * Gets the current singleton instance of the GPIOController
-         * @return GPIOController
-         */
-    public static GpioController getGPIOController() {
-            return GPIOController;
-    }
-        /**
-         * Shuts down the GPIOController.
-         */
-    public static void shutdown() {
-        SystemHost.consolePrintln("OK", "Shutting down GPIO Controller");
-        GPIOController.shutdown();
-    }
-
->>>>>>> a3749e3a9e46e9543be5583593f6743c712e3ee1
 }

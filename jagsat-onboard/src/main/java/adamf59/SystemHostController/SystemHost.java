@@ -11,6 +11,7 @@ import java.util.Calendar;
 
 import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
+import adamf59.SystemHostController.Subsystems.Avionics.BallastControl;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
 import adamf59.SystemHostController.System.DispatcherService;
 import adamf59.SystemHostController.System.SchedulerService;
@@ -68,6 +69,13 @@ public class SystemHost {
 
             GPIO.initGPIOController();
          
+            c_schedulerService.scheduleTask(new BallastControl(), 1);
+            c_schedulerService.scheduleTask(new BallastControl(), 1);
+
+            c_schedulerService.scheduleTask(new BallastControl(), 1);
+            c_schedulerService.scheduleTask(new BallastControl(), 1);
+
+
 
         } catch(Exception e) {
                 SystemHost.consolePrintln("ERR", "Exception thrown in system initialization: " + " >> " + e.getCause());
@@ -81,7 +89,11 @@ public class SystemHost {
     }
 
     public static void sys_destroy() {
+        consolePrintln("WARN", "System is shutting down");
 
+        s_avionics.destroySubsystem();
+        s_communications.destroySubsystem();
+        GPIO.shutdown();
     }
  
 

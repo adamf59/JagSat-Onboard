@@ -77,7 +77,7 @@ public abstract class Subsystem implements Runnable {
          */
     @SuppressWarnings("deprecation")
     public final void destroySubsystem() {
-        instanceThread.destroy();
+        instanceThread.stop();
     }
 
         //TODO add way to peacefully close the subsystem
