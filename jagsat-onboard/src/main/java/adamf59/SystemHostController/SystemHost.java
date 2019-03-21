@@ -12,7 +12,6 @@ package adamf59.SystemHostController;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
-
 import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
 import adamf59.SystemHostController.Subsystems.Avionics.BallastControl;
@@ -28,7 +27,7 @@ public class SystemHost {
     public static Avionics s_avionics;
     public static Communications s_communications;
 
-
+    
     private static SchedulerService c_schedulerService;
     private static DispatcherService c_dispatcherService;
     private static SystemController c_systemController;
@@ -44,13 +43,11 @@ public class SystemHost {
             isVerified = true;
 
         }
-        
 
 
         sys_init();
         
         try {
-
             Console.printInfo("Handing control to System Controller...");
 
             c_systemController.start();
@@ -61,7 +58,7 @@ public class SystemHost {
         }
 
         getSchedulerService().scheduleTask(new SystemCheckout(), SchedulerService.PRIORITY_HIGH);
-
+        
 
     }
 
