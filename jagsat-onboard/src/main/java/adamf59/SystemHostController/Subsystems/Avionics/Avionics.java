@@ -7,6 +7,7 @@ package adamf59.SystemHostController.Subsystems.Avionics;
 
 import adamf59.Core.Subsystem;
 import adamf59.SystemHostController.SystemHost;
+import adamf59.SystemHostController.System.Console;
 
 public class Avionics extends Subsystem {
 
@@ -17,14 +18,14 @@ public class Avionics extends Subsystem {
 
     @Override
     public void init() {
-        SystemHost.consolePrintln("OK", "Initializing Avionics Subsystem");
+        Console.printInfo("Initializing Avionics Subsystem");
 
     }
 
 
     @Override
     public void execute() {
-            SystemHost.consolePrintln("OK", "Avionics subsystem updating...");
+            Console.printInfo("Avionics subsystem updating...");
             try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

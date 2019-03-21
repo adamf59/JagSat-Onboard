@@ -7,6 +7,7 @@
 package adamf59.Core;
 
 import adamf59.SystemHostController.SystemHost;
+import adamf59.SystemHostController.System.Console;
 
 /**
      * Commands are specific actions to do, their execute methods run once, or can be looped within using reiterate.
@@ -66,7 +67,7 @@ public abstract class Command implements Runnable {
         try {
             instanceThread.sleep(millis);
         } catch(Exception e) {
-            SystemHost.consolePrintln("ERR", "Exception thrown when command (" + command_name + ") tried to sleep <" + e.getMessage() + ">");
+            Console.printErr("Exception thrown when command (" + command_name + ") tried to sleep <" + e.getMessage() + ">");
         }
     }
         /**

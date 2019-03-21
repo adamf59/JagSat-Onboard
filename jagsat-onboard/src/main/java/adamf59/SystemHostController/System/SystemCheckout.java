@@ -12,8 +12,8 @@ public class SystemCheckout extends Command {
     
     @Override
     public void init() {
-        SystemHost.consolePrintln("OK", "====System Check====");
-        SystemHost.consolePrintln("OK", "Disabling Subsystems Temporarily...");
+        Console.printInfo("====System Check====");
+        Console.printOk("Disabling Subsystems Temporarily...");
             SystemHost.getAvionics().suspendSubsystem();
             SystemHost.getCommunications().suspendSubsystem();
     }

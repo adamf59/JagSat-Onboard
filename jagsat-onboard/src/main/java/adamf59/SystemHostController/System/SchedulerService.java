@@ -33,7 +33,7 @@ public class SchedulerService {
 
     public int scheduleTask(Command c, int priority) {
         TASK_ARRAY.add(new Schedulable(priority, c));
-        SystemHost.consolePrintln("SYS", "Scheduling task with PID: " + TOP_PID + " and command " + c.getCommandName());
+        Console.printInfo("SchedulerService: Scheduling task with PID: " + TOP_PID + " and command " + c.getCommandName());
 
         TOP_PID++;
         

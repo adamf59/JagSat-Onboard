@@ -7,6 +7,7 @@ package adamf59.SystemHostController.Subsystems.Avionics;
 
 import adamf59.Core.Command;
 import adamf59.SystemHostController.SystemHost;
+import adamf59.SystemHostController.System.Console;
 
 public class BallastControl extends Command {
 
@@ -21,7 +22,7 @@ public class BallastControl extends Command {
 
     @Override
     public void execute() {
-           SystemHost.consolePrintln("OK", "Recieved Ballast Drop Command"); 
+           Console.printInfo("Recieved Ballast Drop Command"); 
     }
 
    

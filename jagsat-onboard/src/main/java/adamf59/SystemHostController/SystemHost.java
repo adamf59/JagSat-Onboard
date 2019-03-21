@@ -17,6 +17,7 @@ import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
 import adamf59.SystemHostController.Subsystems.Avionics.BallastControl;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
+import adamf59.SystemHostController.System.Console;
 import adamf59.SystemHostController.System.DispatcherService;
 import adamf59.SystemHostController.System.SchedulerService;
 import adamf59.SystemHostController.System.SystemCheckout;
@@ -35,27 +36,27 @@ public class SystemHost {
     private static boolean isVerified = false;
 
     public static void main(String[] args) throws Exception {
-        consolePrintln("OK", "JagSat Flight Computer v1.0");
-        consolePrintln("OK", "Written by Adam Frank, deployed by Windham High School JagSat Team");
-        
+        Console.printInfo("JagSat Flight Computer v1.0");
+        Console.printInfo("Written by Adam Frank, deployed by Windham High School JagSat Team");
+    
         if(Arrays.toString(args).contains("-JFSL")) {
-            consolePrintln("OK", "Verified Jaguar Flight Systems Launcher... Hello JFSL!");
+            Console.printInfo("Verified Jaguar Flight Systems Launcher... Hello JFSL!");
             isVerified = true;
 
         }
-
+        
 
 
         sys_init();
         
         try {
 
-            consolePrintln("OK", "Handing control to System Controller...");
+            Console.printInfo("Handing control to System Controller...");
 
             c_systemController.start();
 
         } catch(Exception e) {
-            consolePrintln("OK", "System Host now destroying all systems.");
+            Console.printErr("Failed to connect to System Controller. System Host now destroying all systems.");
 
         }
 
@@ -66,7 +67,7 @@ public class SystemHost {
 
 
     public static int sys_init() {
-        consolePrintln("OK", "System is now initalizing");
+        Console.printInfo("System is now initalizing");
         try {
             c_schedulerService = new SchedulerService();
             c_dispatcherService = new DispatcherService();
@@ -82,18 +83,18 @@ public class SystemHost {
 
 
         } catch(Exception e) {
-                SystemHost.consolePrintln("ERR", "Exception thrown in system initialization: " + " >> " + e.getCause());
+                Console.printErr("Exception thrown in system initialization: " + " >> " + e.getCause());
                 e.printStackTrace();
             // something went wrong during initialization
             return 0; 
         }
         // initializing system was successful
-        consolePrintln("OK", "System initialization complete");
+        Console.printOk("System initialization complete");
         return 1;
     }
 
     public static void sys_destroy() {
-        consolePrintln("WARN", "System is shutting down");
+        Console.printWarn("System is shutting down");
 
         s_avionics.destroySubsystem();
         s_communications.destroySubsystem();
@@ -105,10 +106,7 @@ public class SystemHost {
          * @param success
          * @param message
          */
-    public static void consolePrintln(String success, String message) {
-        String timeStamp = new SimpleDateFormat("HH:mm:ss:SS").format(Calendar.getInstance().getTime());
-        System.out.println("[   " + success + "   " + timeStamp + "   ] " + message);
-    }
+    
 
         /**
          * Get the avionics subsystem instance

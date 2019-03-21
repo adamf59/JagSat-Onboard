@@ -17,15 +17,15 @@ public class DispatcherService implements Runnable {
     public DispatcherService() {
 
         instanceThread = new Thread(this, "JAGSAT_DISPATCHER_SERVICE");
-        SystemHost.consolePrintln("OK", "Initializing System Dispatcher Service");
+        Console.printOk("Initializing System Dispatcher Service");
 
         try {
             instanceThread.start();
         } catch (Exception e) {
-            SystemHost.consolePrintln("ERR", "Exception thrown in dispatcher initialization: " + " >> " + e.getCause());
+            Console.printErr("Exception thrown in dispatcher initialization: " + " >> " + e.getCause());
 
         }
-        SystemHost.consolePrintln("OK", "System Dispatcher Initialized Success");
+        Console.printOk("System Dispatcher Initialized Success");
 
     }
     
@@ -37,7 +37,7 @@ public class DispatcherService implements Runnable {
             try {
 
                 if(CURRENT_PID < SystemHost.getSchedulerService().TOP_PID) {
-                    SystemHost.consolePrintln("WARN", "Executing Task with PID " + CURRENT_PID);
+                    Console.printInfo("DispatcherSerivce: Executing Task with PID " + CURRENT_PID);
                     SystemHost.getSchedulerService().getTask(CURRENT_PID).getCommand().init();
                     SystemHost.getSchedulerService().getTask(CURRENT_PID).getCommand().startThread();
                     CURRENT_PID++;

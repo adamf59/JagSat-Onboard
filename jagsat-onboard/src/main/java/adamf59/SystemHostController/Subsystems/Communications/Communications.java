@@ -22,6 +22,7 @@ import com.pi4j.io.serial.StopBits;
 
 import adamf59.Core.Subsystem;
 import adamf59.SystemHostController.SystemHost;
+import adamf59.SystemHostController.System.Console;
 
 public class Communications extends Subsystem {
 
@@ -34,7 +35,7 @@ public class Communications extends Subsystem {
 
     @Override
     public void init() {
-        SystemHost.consolePrintln("OK", "Initializing Communications Subsystem");
+        Console.printOk("Initializing Communications Subsystem");
         rockblockSerial = SerialFactory.createInstance();
         setupReciever();
         serialConfig = new SerialConfig();
@@ -44,7 +45,7 @@ public class Communications extends Subsystem {
                     rockblockSerial.open(serialConfig);
 
         } catch (UnsupportedBoardType | IOException | InterruptedException e) {
-            SystemHost.consolePrintln("ERR", "Communications Subsystem Init Failed. Continuing anyway... ");
+            Console.printErr("Communications Subsystem Init Failed. Continuing anyway... ");
 
         }
 
@@ -53,7 +54,7 @@ public class Communications extends Subsystem {
 
     @Override
     public void execute() {
-        SystemHost.consolePrintln("OK", "Communications subsystem updating...");
+        Console.printOk("Communications subsystem updating...");
         try {
         Thread.sleep(3200);
     } catch (InterruptedException e) {
@@ -74,8 +75,8 @@ public class Communications extends Subsystem {
             @Override
             public void dataReceived(SerialDataEvent event) {
                 try {
-                    SystemHost.consolePrintln("OK","Communications RX: [HEX DATA]   " + event.getHexByteString());
-                    SystemHost.consolePrintln("OK","Communications RX: [ASCII DATA] " + event.getAsciiString());
+                    Console.printInfo("Recieve: Communications RX: [HEX DATA]   " + event.getHexByteString());
+                    Console.printInfo("Recieve: Communications RX: [ASCII DATA] " + event.getAsciiString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

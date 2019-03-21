@@ -7,6 +7,7 @@
 package adamf59.Core;
 
 import adamf59.SystemHostController.SystemHost;
+import adamf59.SystemHostController.System.Console;
 
 /**
  * Subsystems contain code that should stay seperate from other components, to avoid
@@ -54,14 +55,14 @@ public abstract class Subsystem implements Runnable {
          * Stops the subsystem from executing (the execute method), but does not fully stop it.
          */
     public final void suspendSubsystem() {
-        SystemHost.consolePrintln("OK", "Suspending subsystem with name: " + name + " and id: " + id);
+        Console.printInfo("Suspending subsystem with name: " + name + " and id: " + id);
         subsystem_running = false;
     }
         /**
          * Resumes the subsystem after it was suspended
          */
     public final void resumeSubsystem() {
-        SystemHost.consolePrintln("OK", "Resuming subsystem with name: " + name + " and id: " + id);
+        Console.printInfo("Resuming subsystem with name: " + name + " and id: " + id);
         subsystem_running = true;
     }
         /**
@@ -121,7 +122,7 @@ public abstract class Subsystem implements Runnable {
 
 			} catch (Exception e) {
                 e.printStackTrace();
-                SystemHost.consolePrintln("ERR", "Exception thrown in subsystem: " + name + " with id: " + id + " >> " + e.getCause());
+                Console.printErr("Exception thrown in subsystem: " + name + " with id: " + id + " >> " + e.getCause());
 			}
         
         }

@@ -13,7 +13,7 @@ public class SystemController implements Runnable {
 
     public SystemController() {
         instanceThread = new Thread(this, "JAGSAT_SYSTEM_CONTROLLER");
-        SystemHost.consolePrintln("OK", "Initializing System Controller");
+        Console.printOk("Initializing System Controller");
     }
 
     public void start() throws Exception {
