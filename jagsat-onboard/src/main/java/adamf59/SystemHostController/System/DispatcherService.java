@@ -36,9 +36,10 @@ public class DispatcherService implements Runnable {
         while(dispatcher_master_loop) {
             try {
 
-                if(CURRENT_PID < SystemHost.c_schedulerService.TOP_PID) {
+                if(CURRENT_PID < SystemHost.getSchedulerService().TOP_PID) {
                     SystemHost.consolePrintln("WARN", "Executing Task with PID " + CURRENT_PID);
-                    SystemHost.c_schedulerService.getTask(CURRENT_PID).getCommand().startThread();
+                    SystemHost.getSchedulerService().getTask(CURRENT_PID).getCommand().init();
+                    SystemHost.getSchedulerService().getTask(CURRENT_PID).getCommand().startThread();
                     CURRENT_PID++;
                 }
       

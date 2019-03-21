@@ -2,7 +2,11 @@
 * JAGSAT MISSION 2019
 * Written by Adam Frank, with references to contributors at GitHub and Stack Overflow
 *  Updates at GitHub.com/adamf59
+*
+*  Build: 3.21.19a
 */
+
+
 package adamf59.SystemHostController;
 
 import java.text.SimpleDateFormat;
@@ -15,6 +19,7 @@ import adamf59.SystemHostController.Subsystems.Avionics.BallastControl;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
 import adamf59.SystemHostController.System.DispatcherService;
 import adamf59.SystemHostController.System.SchedulerService;
+import adamf59.SystemHostController.System.SystemCheckout;
 import adamf59.SystemHostController.System.SystemController;
 
 public class SystemHost {
@@ -23,10 +28,11 @@ public class SystemHost {
     public static Communications s_communications;
 
 
-    public static SchedulerService c_schedulerService;
-    public static DispatcherService c_dispatcherService;
-    public static SystemController c_systemController;
+    private static SchedulerService c_schedulerService;
+    private static DispatcherService c_dispatcherService;
+    private static SystemController c_systemController;
     
+    private static boolean isVerified = false;
 
     public static void main(String[] args) throws Exception {
         consolePrintln("OK", "JagSat Flight Computer v1.0");
@@ -34,6 +40,7 @@ public class SystemHost {
         
         if(Arrays.toString(args).contains("-JFSL")) {
             consolePrintln("OK", "Verified Jaguar Flight Systems Launcher... Hello JFSL!");
+            isVerified = true;
 
         }
 
@@ -52,6 +59,7 @@ public class SystemHost {
 
         }
 
+        getSchedulerService().scheduleTask(new SystemCheckout(), SchedulerService.PRIORITY_HIGH);
 
 
     }
@@ -67,14 +75,10 @@ public class SystemHost {
             s_avionics = new Avionics(0);
             s_communications = new Communications(1);
 
-            GPIO.initGPIOController();
          
-            c_schedulerService.scheduleTask(new BallastControl(), 1);
-            c_schedulerService.scheduleTask(new BallastControl(), 1);
+      
 
-            c_schedulerService.scheduleTask(new BallastControl(), 1);
-            c_schedulerService.scheduleTask(new BallastControl(), 1);
-
+            GPIO.initGPIOController();
 
 
         } catch(Exception e) {
@@ -96,7 +100,11 @@ public class SystemHost {
         GPIO.shutdown();
     }
  
-
+        /**
+         * The standard way to print to the console
+         * @param success
+         * @param message
+         */
     public static void consolePrintln(String success, String message) {
         String timeStamp = new SimpleDateFormat("HH:mm:ss:SS").format(Calendar.getInstance().getTime());
         System.out.println("[   " + success + "   " + timeStamp + "   ] " + message);
@@ -121,6 +129,20 @@ public class SystemHost {
          */
     public static SchedulerService getSchedulerService() {
         return c_schedulerService;
+    }
+     /**
+         * Get the active DispatcherService instance
+         */
+    public static DispatcherService getDispatcherService() {
+        return c_dispatcherService;
+    }
+
+    /**
+     * returns 
+     * @return whether JFSL is running on command of the JFS Launcher (real instance vs. IDE instance)
+     */
+    public static boolean isJFSLVerified() {
+        return isVerified;
     }
    
 

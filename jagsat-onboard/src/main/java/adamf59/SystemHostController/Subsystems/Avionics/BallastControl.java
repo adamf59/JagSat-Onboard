@@ -13,9 +13,16 @@ public class BallastControl extends Command {
     public BallastControl() {
         super("BALLAST_CONTROL");
     }
+    
+    @Override
+    public void init() {
+
+    }
+
     @Override
     public void execute() {
            SystemHost.consolePrintln("OK", "Recieved Ballast Drop Command"); 
     }
 
+   
 }

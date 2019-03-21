@@ -26,6 +26,12 @@ public abstract class Command implements Runnable {
         instanceThread = new Thread(this, "JAGSAT_DPC_" + command_name);
     }
         /**
+         * The init method is ran once when the method is started, before the primary execute() method is started.
+         *  It will not run if the reiterate() method is called.
+         */
+    public abstract void init();
+
+        /**
          * The execute method is called when the command is created. It can also be called if the reiterate
          * method is called.
          */
