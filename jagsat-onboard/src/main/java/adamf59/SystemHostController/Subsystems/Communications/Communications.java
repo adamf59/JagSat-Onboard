@@ -88,6 +88,8 @@ public class Communications extends Subsystem {
     }
     
     protected void transmit(String data) throws IllegalStateException, IOException {
+        Console.printInfo("Transmitting (TX): " + data);
+
         rockblockSerial.write(data);
     }
     
