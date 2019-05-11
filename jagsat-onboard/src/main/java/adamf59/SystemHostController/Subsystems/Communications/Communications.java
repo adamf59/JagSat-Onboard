@@ -36,13 +36,13 @@ public class Communications extends Subsystem {
     @Override
     public void init() {
         Console.printOk("Initializing Communications Subsystem");
-        //rockblockSerial = SerialFactory.createInstance();
-       // setupReciever();
-       // serialConfig = new SerialConfig();
+        rockblockSerial = SerialFactory.createInstance();
+        setupReciever();
+        serialConfig = new SerialConfig();
         try {
-         //   serialConfig.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
-           //         .stopBits(StopBits._1).flowControl(FlowControl.NONE);
-             ///       rockblockSerial.open(serialConfig);
+            serialConfig.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
+                    .stopBits(StopBits._1).flowControl(FlowControl.NONE);
+                   rockblockSerial.open(serialConfig);
 
         } catch (Exception e) {
             Console.printErr("Communications Subsystem Init Failed. Continuing anyway... ");

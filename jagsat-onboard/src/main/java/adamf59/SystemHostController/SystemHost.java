@@ -70,13 +70,14 @@ public class SystemHost {
             c_dispatcherService = new DispatcherService();
             c_systemController = new SystemController();
 
-            s_avionics = new Avionics(0);
-            s_communications = new Communications(1);
-
+      
          
       
 
             GPIO.initGPIOController();
+
+            s_avionics = new Avionics(0);
+            s_communications = new Communications(1);
 
 
         } catch(Exception e) {
@@ -98,12 +99,7 @@ public class SystemHost {
         GPIO.shutdown();
     }
  
-        /**
-         * The standard way to print to the console
-         * @param success
-         * @param message
-         */
-    
+      
 
         /**
          * Get the avionics subsystem instance
