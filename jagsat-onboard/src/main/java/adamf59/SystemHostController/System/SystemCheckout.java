@@ -9,6 +9,8 @@ package adamf59.SystemHostController.System;
 
 import adamf59.Core.Command;
 import adamf59.SystemHostController.SystemHost;
+import adamf59.SystemHostController.Subsystems.Communications.Communications;
+import adamf59.SystemHostController.Subsystems.Communications.Transmit;
 
 public class SystemCheckout extends Command {
 
@@ -22,15 +24,21 @@ public class SystemCheckout extends Command {
         Console.printInfo("====System Check====");
         Console.printOk("Disabling Subsystems Temporarily...");
             SystemHost.getAvionics().suspendSubsystem();
-            SystemHost.getCommunications().suspendSubsystem();
+           // SystemHost.getCommunications().suspendSubsystem();
     }
 
     @Override
     public void execute() {
 
-            
-    }
+        Console.printInfo("Checking Serial Connections...");
+        Console.printInfo("TX Test...");
+        SystemHost.getSchedulerService().scheduleTask(new Transmit("Jaguar Flight Systems"), SchedulerService.PRIORITY_LOW);
 
+        sleep(4000);
+
+            reiterate();
+    }
+    
     
     
 
