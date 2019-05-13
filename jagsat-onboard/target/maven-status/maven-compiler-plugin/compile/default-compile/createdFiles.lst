@@ -2,6 +2,7 @@ adamf59/SystemHostController/IO/GPIO.class
 adamf59/SystemHostController/System/Console.class
 adamf59/SystemHostController/System/DispatcherService.class
 adamf59/SystemHostController/System/SystemController.class
+adamf59/SystemHostController/Subsystems/Communications/CommunicationsReciever.class
 adamf59/SystemHostController/Subsystems/Communications/Transmit.class
 adamf59/SystemHostController/Subsystems/Communications/Communications.class
 adamf59/Core/Command.class
@@ -12,7 +13,6 @@ adamf59/Core/Subsystem.class
 adamf59/SystemHostController/System/SystemCheckout.class
 adamf59/SystemHostController/SystemHost.class
 adamf59/SystemHostController/System/SystemMap.class
-adamf59/SystemHostController/Subsystems/Communications/Communications$1.class
 adamf59/SystemHostController/System/FlightDataSystem.class
 adamf59/Core/Schedulable.class
 adamf59/SystemHostController/Subsystems/Avionics/BallastControl.class

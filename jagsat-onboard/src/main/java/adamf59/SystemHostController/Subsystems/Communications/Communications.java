@@ -7,27 +7,16 @@ package adamf59.SystemHostController.Subsystems.Communications;
 
 import java.io.IOException;
 
-import com.pi4j.io.gpio.exception.UnsupportedBoardType;
-import com.pi4j.io.serial.Baud;
-import com.pi4j.io.serial.DataBits;
-import com.pi4j.io.serial.FlowControl;
-import com.pi4j.io.serial.Parity;
-import com.pi4j.io.serial.Serial;
-import com.pi4j.io.serial.SerialConfig;
-import com.pi4j.io.serial.SerialDataEvent;
-import com.pi4j.io.serial.SerialDataEventListener;
-import com.pi4j.io.serial.SerialFactory;
-import com.pi4j.io.serial.SerialPort;
-import com.pi4j.io.serial.StopBits;
-
 import adamf59.Core.Subsystem;
 import adamf59.SystemHostController.SystemHost;
 import adamf59.SystemHostController.System.Console;
+import jssc.SerialPort;
+import jssc.SerialPortException;
 
 public class Communications extends Subsystem {
 
-    Serial rockblockSerial;
-    SerialConfig serialConfig;
+   public static SerialPort serialPort;
+
 
     public Communications(int id) {
         super("JAGSAT_COMMUNICATIONS_SUBSYSTEM", 1);
@@ -35,21 +24,27 @@ public class Communications extends Subsystem {
 
     @Override
     public void init() {
-        Console.printOk("Initializing Communications Subsystem");
-        rockblockSerial = SerialFactory.createInstance();
-        setupReciever();
-        serialConfig = new SerialConfig();
+        serialPort = new SerialPort("USB0"); 
+
         try {
-            serialConfig.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
-                    .stopBits(StopBits._1).flowControl(FlowControl.NONE);
-                   rockblockSerial.open(serialConfig);
-                   
-
-        } catch (Exception e) {
-            Console.printErr("Communications Subsystem Init Failed. Reason: " + e.getMessage());
-
+            serialPort.openPort();
+            serialPort.setParams(19200, 8, 1, 0);
+            //Preparing a mask. In a mask, we need to specify the types of events that we want to track.
+            //Well, for example, we need to know what came some data, thus in the mask must have the
+            //following value: MASK_RXCHAR. If we, for example, still need to know about changes in states 
+            //of lines CTS and DSR, the mask has to look like this: SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR
+            int mask = SerialPort.MASK_RXCHAR;
+            //Set the prepared mask
+            serialPort.setEventsMask(mask);
+            //Add an interface through which we will receive information about events
+            serialPort.addEventListener(new CommunicationsReciever());
+            serialPort.writeString("AT");
 
         }
+        catch (SerialPortException ex) {
+            System.out.println(ex);
+        }
+
 
 
     }
@@ -70,29 +65,19 @@ public class Communications extends Subsystem {
     }
 
 
-    private void setupReciever() {
-
-        rockblockSerial.addListener(new SerialDataEventListener(){
-        
-            @Override
-            public void dataReceived(SerialDataEvent event) {
-                try {
-                    Console.printInfo("Recieve: Communications RX: [HEX DATA]   " + event.getHexByteString());
-                    Console.printInfo("Recieve: Communications RX: [ASCII DATA] " + event.getAsciiString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        
-    
-    }
     
     protected void transmit(String data) throws IllegalStateException, IOException {
         Console.printInfo("Transmitting (TX): " + data);
 
-        rockblockSerial.write(data + "\r");
+        try {
+            serialPort.writeString(data + "\r");
+        } catch (SerialPortException e) {
+
+            Console.printErr("Failed to Transmit Message. Reason:" + e.getMessage());
+        }
+
+      
+        
     }
     
 
