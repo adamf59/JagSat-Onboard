@@ -45,7 +45,8 @@ public class Communications extends Subsystem {
                    rockblockSerial.open(serialConfig);
 
         } catch (Exception e) {
-            Console.printErr("Communications Subsystem Init Failed. Continuing anyway... ");
+            Console.printErr("Communications Subsystem Init Failed. Reason: " + e.getMessage());
+
 
         }
 
