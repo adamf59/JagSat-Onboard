@@ -28,16 +28,11 @@ public class Communications extends Subsystem {
 
         try {
             serialPort.openPort();
-            serialPort.setParams(19200, 8, 1, 0);
-            //Preparing a mask. In a mask, we need to specify the types of events that we want to track.
-            //Well, for example, we need to know what came some data, thus in the mask must have the
-            //following value: MASK_RXCHAR. If we, for example, still need to know about changes in states 
-            //of lines CTS and DSR, the mask has to look like this: SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR
-            int mask = SerialPort.MASK_RXCHAR;
-            //Set the prepared mask
-            serialPort.setEventsMask(mask);
+            serialPort.setParams(SerialPort.BAUDRATE_19200,    SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
+            SerialPort.PARITY_NONE);
+    serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
             //Add an interface through which we will receive information about events
-            serialPort.addEventListener(new CommunicationsReciever());
+            serialPort.addEventListener(new CommunicationsReciever(), SerialPort.MASK_RXCHAR);
             serialPort.writeString("AT");
 
         }
