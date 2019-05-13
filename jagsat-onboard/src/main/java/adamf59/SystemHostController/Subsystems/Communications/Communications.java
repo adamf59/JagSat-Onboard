@@ -24,7 +24,7 @@ public class Communications extends Subsystem {
 
     @Override
     public void init() {
-        serialPort = new SerialPort("USB0"); 
+        serialPort = new SerialPort("/dev/ttyUSB0"); 
 
         try {
             serialPort.openPort();
@@ -42,7 +42,7 @@ public class Communications extends Subsystem {
 
         }
         catch (SerialPortException ex) {
-            System.out.println(ex);
+            Console.printErr("Failed to initialize Communications Subsystem. Reason:" + ex.getMessage());
         }
 
 
