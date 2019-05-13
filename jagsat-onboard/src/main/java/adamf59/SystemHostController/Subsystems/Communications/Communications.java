@@ -43,6 +43,7 @@ public class Communications extends Subsystem {
             serialConfig.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
                     .stopBits(StopBits._1).flowControl(FlowControl.NONE);
                    rockblockSerial.open(serialConfig);
+                   
 
         } catch (Exception e) {
             Console.printErr("Communications Subsystem Init Failed. Reason: " + e.getMessage());
@@ -91,7 +92,7 @@ public class Communications extends Subsystem {
     protected void transmit(String data) throws IllegalStateException, IOException {
         Console.printInfo("Transmitting (TX): " + data);
 
-        rockblockSerial.write(data);
+        rockblockSerial.write(data + "\r");
     }
     
 
