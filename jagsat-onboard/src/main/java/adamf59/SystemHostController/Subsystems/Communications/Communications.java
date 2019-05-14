@@ -33,6 +33,9 @@ public class Communications extends Subsystem {
 
     private String last_response = "";
 
+    /**
+     * Creates a new instance of the Communications Subsystem
+     */
     public Communications(int id) {
         super("JAGSAT_COMMUNICATIONS_SUBSYSTEM", 1);
     }
@@ -102,7 +105,9 @@ public class Communications extends Subsystem {
     }
 
 
-    
+        /**
+         * Transmits the data across the serial bus to the connected device.
+         */
     protected void transmit(String data) throws IllegalStateException, IOException {
         Console.printInfo("Transmitting (TX): " + data);
 
@@ -117,7 +122,10 @@ public class Communications extends Subsystem {
       
         
     }
-
+        /**
+         * Returns the last message recieved from the serial bus
+         * @return String
+         */
     public String getLastResponse() {
         return last_response;
     }

@@ -65,7 +65,10 @@ public class SystemHost {
 
     }
 
-
+        /**
+         * initializes all subsystems and prepares the system for flight
+         * @return success (1 or 0)
+         */
     public static int sys_init() {
         Console.printInfo("System is now initalizing");
         try {
@@ -94,6 +97,9 @@ public class SystemHost {
         return 1;
     }
 
+    /**
+     * Destroys all subsystems
+     */
     public static void sys_destroy() {
         Console.printWarn("System is shutting down");
 

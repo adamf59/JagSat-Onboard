@@ -10,6 +10,10 @@ public class Transmit extends Command {
 
     private String data = "";
 
+    /**
+     * Command to transmit data from the Communications Subsystem
+     * @param data
+     */
     public Transmit(String data) {
         super("TRANSMIT");
         this.data = data;

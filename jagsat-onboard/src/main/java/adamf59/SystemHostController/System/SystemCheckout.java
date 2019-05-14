@@ -14,6 +14,9 @@ import adamf59.SystemHostController.Subsystems.Communications.Transmit;
 
 public class SystemCheckout extends Command {
 
+    /**
+     * Command responsible for testing all subsystems to ensure they are working properly
+     */
     public SystemCheckout() {
         super("SYSTEM_CHECKOUT");
     }
@@ -36,7 +39,7 @@ public class SystemCheckout extends Command {
 
        sleep(2000);
             if(SystemHost.getCommunications().getLastResponse().contains("OK")) {
-                Console.printOk("Serial TXRX Test Passed. No issues here!");
+                Console.printOk("Serial TXRX Test Passed. No issues detected.");
             } else {
                 Console.printErr("Serial TXRX Test Failed. Data recieved was not expected. I got: " + SystemHost.getCommunications().getLastResponse());
             }

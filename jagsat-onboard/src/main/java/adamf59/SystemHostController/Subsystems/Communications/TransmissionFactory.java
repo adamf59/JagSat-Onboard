@@ -10,7 +10,7 @@ public class TransmissionFactory {
     /**
      * Formats an array of flight data into transmission format
      */
-    public String format(String[] data) {
+    public String packageData(String[] data) {
             // format the data into a form that can be transmitted
         
             return "METHOD NOT COMPLETE";
@@ -18,9 +18,8 @@ public class TransmissionFactory {
 
     /**
      * Takes a recieved data packet and turns it into the core request data.
-     * Is unformat even a word?
      */
-    public String[] unformat() {
+    public String[] unpackageData() {
         
         return null;
 
