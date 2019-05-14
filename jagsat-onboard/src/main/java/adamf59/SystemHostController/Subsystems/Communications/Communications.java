@@ -65,7 +65,7 @@ public class Communications extends Subsystem {
         Console.printInfo("Transmitting (TX): " + data);
 
         try {
-            serialPort.writeString(data + "\r");
+            serialPort.writeString(data);
         } catch (SerialPortException e) {
 
             Console.printErr("Failed to Transmit Message. Reason:" + e.getMessage());

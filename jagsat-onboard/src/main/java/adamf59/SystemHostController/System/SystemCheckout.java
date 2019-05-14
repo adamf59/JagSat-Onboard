@@ -32,11 +32,12 @@ public class SystemCheckout extends Command {
 
         Console.printInfo("Checking Serial Connections...");
         Console.printInfo("TX Test...");
-       // SystemHost.getSchedulerService().scheduleTask(new Transmit("AT"), SchedulerService.PRIORITY_LOW);
+       SystemHost.getSchedulerService().scheduleTask(new Transmit("Hello World!"), SchedulerService.PRIORITY_LOW);
 
         sleep(4000);
 
             reiterate();
+    
     }
     
     
