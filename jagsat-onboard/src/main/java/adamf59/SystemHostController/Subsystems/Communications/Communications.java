@@ -6,17 +6,28 @@
 package adamf59.SystemHostController.Subsystems.Communications;
 
 import java.io.IOException;
+import java.util.Date;
+
+import com.pi4j.io.gpio.exception.UnsupportedBoardType;
+import com.pi4j.io.serial.Baud;
+import com.pi4j.io.serial.DataBits;
+import com.pi4j.io.serial.FlowControl;
+import com.pi4j.io.serial.Parity;
+import com.pi4j.io.serial.Serial;
+import com.pi4j.io.serial.SerialConfig;
+import com.pi4j.io.serial.SerialFactory;
+import com.pi4j.io.serial.SerialPort;
+import com.pi4j.io.serial.SerialPortException;
+import com.pi4j.io.serial.StopBits;
 
 import adamf59.Core.Subsystem;
 import adamf59.SystemHostController.SystemHost;
 import adamf59.SystemHostController.System.Console;
-import jssc.SerialPort;
-import jssc.SerialPortException;
 
 public class Communications extends Subsystem {
 
-   public static SerialPort serialPort;
-
+    public static SerialConfig config = new SerialConfig();
+    public static final Serial serial = SerialFactory.createInstance();
 
     public Communications(int id) {
         super("JAGSAT_COMMUNICATIONS_SUBSYSTEM", 1);
@@ -24,23 +35,15 @@ public class Communications extends Subsystem {
 
     @Override
     public void init() {
-        serialPort = new SerialPort("/dev/ttyUSB0"); 
-
         try {
-            serialPort.openPort();
-            serialPort.setParams(SerialPort.BAUDRATE_19200,    SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
-            SerialPort.PARITY_NONE);
-    serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            //Add an interface through which we will receive information about events
-          //  serialPort.addEventListener(new CommunicationsReciever(), SerialPort.MASK_RXCHAR);
-            serialPort.writeString("AT");
+            config.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
+                    .stopBits(StopBits._1).flowControl(FlowControl.NONE);
+                    serial.open(config);
 
+        } catch (UnsupportedBoardType | IOException | InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        catch (SerialPortException ex) {
-            Console.printErr("Failed to initialize Communications Subsystem. Reason:" + ex.getMessage());
-        }
-
-
 
     }
 
@@ -65,7 +68,8 @@ public class Communications extends Subsystem {
         Console.printInfo("Transmitting (TX): " + data);
 
         try {
-            serialPort.writeString(data);
+            serial.write("CURRENT TIME: " + new Date().toString());
+
         } catch (SerialPortException e) {
 
             Console.printErr("Failed to Transmit Message. Reason:" + e.getMessage());

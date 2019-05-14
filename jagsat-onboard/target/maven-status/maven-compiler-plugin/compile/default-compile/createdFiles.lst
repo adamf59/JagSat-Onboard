@@ -2,7 +2,6 @@ adamf59/SystemHostController/IO/GPIO.class
 adamf59/SystemHostController/System/Console.class
 adamf59/SystemHostController/System/DispatcherService.class
 adamf59/SystemHostController/System/SystemController.class
-adamf59/SystemHostController/Subsystems/Communications/CommunicationsReciever.class
 adamf59/SystemHostController/Subsystems/Communications/Transmit.class
 adamf59/SystemHostController/Subsystems/Communications/Communications.class
 adamf59/Core/Command.class

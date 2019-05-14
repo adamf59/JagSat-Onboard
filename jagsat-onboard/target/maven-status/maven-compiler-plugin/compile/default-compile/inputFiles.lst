@@ -8,7 +8,6 @@
 /Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/SystemHostController/System/DispatcherService.java
 /Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/SystemHostController/System/SystemMap.java
 /Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/SystemHostController/Subsystems/Avionics/BallastControl.java
-/Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/SystemHostController/Subsystems/Communications/CommunicationsReciever.java
 /Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/Core/Schedulable.java
 /Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/SystemHostController/IO/GPIO.java
 /Users/afrank20/Documents/VSCode Repository/JagSat Onboard/jagsat-onboard/src/main/java/adamf59/SystemHostController/Subsystems/Avionics/Avionics.java
