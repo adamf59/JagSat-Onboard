@@ -12,6 +12,7 @@ adamf59/Core/Subsystem.class
 adamf59/SystemHostController/System/SystemCheckout.class
 adamf59/SystemHostController/SystemHost.class
 adamf59/SystemHostController/System/SystemMap.class
+adamf59/SystemHostController/Subsystems/Communications/Communications$1.class
 adamf59/SystemHostController/System/FlightDataSystem.class
 adamf59/Core/Schedulable.class
 adamf59/SystemHostController/Subsystems/Avionics/BallastControl.class

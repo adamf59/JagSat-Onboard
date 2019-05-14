@@ -15,6 +15,8 @@ import com.pi4j.io.serial.FlowControl;
 import com.pi4j.io.serial.Parity;
 import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialConfig;
+import com.pi4j.io.serial.SerialDataEvent;
+import com.pi4j.io.serial.SerialDataEventListener;
 import com.pi4j.io.serial.SerialFactory;
 import com.pi4j.io.serial.SerialPort;
 import com.pi4j.io.serial.SerialPortException;
@@ -35,10 +37,44 @@ public class Communications extends Subsystem {
 
     @Override
     public void init() {
+
+        
+
         try {
+
+            serial.addListener(new SerialDataEventListener() {
+                @Override
+                public void dataReceived(SerialDataEvent event) {
+    
+                    // NOTE! - It is extremely important to read the data received from the
+                    // serial port.  If it does not get read from the receive buffer, the
+                    // buffer will continue to grow and consume memory.
+    
+                    // print out the data received to the console
+                    try {
+                        Console.printInfo("Communications Recieved (RX): Data: " + event.getAsciiString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+
+
+
+
+
+
             config.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
                     .stopBits(StopBits._1).flowControl(FlowControl.NONE);
                     serial.open(config);
+
+
+
+
+
+
 
         } catch (UnsupportedBoardType | IOException | InterruptedException e) {
             // TODO Auto-generated catch block
