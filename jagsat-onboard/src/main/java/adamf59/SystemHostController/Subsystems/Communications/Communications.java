@@ -68,7 +68,7 @@ public class Communications extends Subsystem {
         Console.printInfo("Transmitting (TX): " + data);
 
         try {
-            serial.write("CURRENT TIME: " + new Date().toString());
+            serial.writeln("CURRENT TIME: " + new Date().toString());
 
         } catch (SerialPortException e) {
 
