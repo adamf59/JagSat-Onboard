@@ -32,7 +32,7 @@ public class Communications extends Subsystem {
             SerialPort.PARITY_NONE);
     serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT);
             //Add an interface through which we will receive information about events
-            serialPort.addEventListener(new CommunicationsReciever(), SerialPort.MASK_RXCHAR);
+          //  serialPort.addEventListener(new CommunicationsReciever(), SerialPort.MASK_RXCHAR);
             serialPort.writeString("AT");
 
         }
