@@ -24,7 +24,7 @@ public class SystemCheckout extends Command {
         Console.printInfo("====System Check====");
         Console.printOk("Disabling Subsystems Temporarily...");
             SystemHost.getAvionics().suspendSubsystem();
-           // SystemHost.getCommunications().suspendSubsystem();
+            SystemHost.getCommunications().suspendSubsystem();
     }
 
     @Override
@@ -32,15 +32,20 @@ public class SystemCheckout extends Command {
 
         Console.printInfo("Checking Serial TXRX Connections...");
        SystemHost.getSchedulerService().scheduleTask(new Transmit("AT"), SchedulerService.PRIORITY_LOW);
-        sleep(1000);
+       Console.printInfo("System Checkout sleeping... good night. Im waiting for new data.");
+
+       sleep(2000);
             if(SystemHost.getCommunications().getLastResponse().contains("OK")) {
                 Console.printOk("Serial TXRX Test Passed. No issues here!");
             } else {
                 Console.printErr("Serial TXRX Test Failed. Data recieved was not expected. I got: " + SystemHost.getCommunications().getLastResponse());
             }
 
-            reiterate();
-    
+            Console.printInfo("====System Check Complete====");
+            Console.printOk("Resuming Subsystems...");
+            SystemHost.getAvionics().resumeSubsystem();
+            SystemHost.getCommunications().resumeSubsystem();
+
     }
     
     
