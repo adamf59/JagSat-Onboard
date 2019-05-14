@@ -31,6 +31,8 @@ public class Communications extends Subsystem {
     public static SerialConfig config = new SerialConfig();
     public static final Serial serial = SerialFactory.createInstance();
 
+    private String last_response = "";
+
     public Communications(int id) {
         super("JAGSAT_COMMUNICATIONS_SUBSYSTEM", 1);
     }
@@ -52,7 +54,8 @@ public class Communications extends Subsystem {
     
                     // print out the data received to the console
                     try {
-                        Console.printInfo("Communications Recieved (RX): Data: " + event.getAsciiString());
+                        Console.printInfo("Communications Recieved (RX)");
+                            last_response = event.getAsciiString();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -113,6 +116,10 @@ public class Communications extends Subsystem {
 
       
         
+    }
+
+    public String getLastResponse() {
+        return last_response;
     }
     
 

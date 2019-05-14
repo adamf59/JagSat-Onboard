@@ -30,11 +30,14 @@ public class SystemCheckout extends Command {
     @Override
     public void execute() {
 
-        Console.printInfo("Checking Serial Connections...");
-        Console.printInfo("TX Test...");
+        Console.printInfo("Checking Serial TXRX Connections...");
        SystemHost.getSchedulerService().scheduleTask(new Transmit("AT"), SchedulerService.PRIORITY_LOW);
-
-        sleep(4000);
+        sleep(1000);
+            if(SystemHost.getCommunications().getLastResponse().contains("OK")) {
+                Console.printOk("Serial TXRX Test Passed. No issues here!");
+            } else {
+                Console.printErr("Serial TXRX Test Failed. Data recieved was not expected. I got: " + SystemHost.getCommunications().getLastResponse());
+            }
 
             reiterate();
     
