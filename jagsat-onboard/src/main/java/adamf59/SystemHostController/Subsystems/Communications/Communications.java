@@ -104,7 +104,7 @@ public class Communications extends Subsystem {
         Console.printInfo("Transmitting (TX): " + data);
 
         try {
-            serial.write(data);
+            serial.write(data + "\r");
 
         } catch (SerialPortException e) {
 
