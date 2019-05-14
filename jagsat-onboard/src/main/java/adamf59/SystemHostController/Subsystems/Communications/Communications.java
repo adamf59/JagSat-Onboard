@@ -66,7 +66,7 @@ public class Communications extends Subsystem {
 
 
 
-            config.device(SerialPort.getDefaultPort()).baud(Baud._38400).dataBits(DataBits._8).parity(Parity.NONE)
+            config.device(SerialPort.getDefaultPort()).baud(Baud._19200).dataBits(DataBits._8).parity(Parity.NONE)
                     .stopBits(StopBits._1).flowControl(FlowControl.NONE);
                     serial.open(config);
 
