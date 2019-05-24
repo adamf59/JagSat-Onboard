@@ -1,13 +1,19 @@
 {
     "configurations": [
-        
-    {
-        "type": "java",
-        "name": "Debug as Certified Launcher",
-        "request": "launch",
-        "mainClass": "",
-        "args": "-JFSL"
-    },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Hex",
+            "request": "launch",
+            "mainClass": "adamf59.Core.Hex",
+            "projectName": "jagsat-onboard"
+        },
+        {
+            "type": "java",
+            "name": "Debug as Certified Launcher",
+            "request": "launch",
+            "mainClass": "",
+            "args": "-JFSL"
+        },
         {
             "type": "java",
             "name": "Debug with Arg Prompt",

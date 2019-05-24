@@ -35,7 +35,7 @@ public class SystemCheckout extends Command {
 
         Console.printInfo("Checking Serial TXRX Connections...");
        SystemHost.getSchedulerService().scheduleTask(new Transmit("AT"), SchedulerService.PRIORITY_LOW);
-       Console.printInfo("System Checkout sleeping... good night. Im waiting for new data.");
+       Console.printInfo("Awaiting new data");
 
        sleep(2000);
             if(SystemHost.getCommunications().getLastResponse().contains("OK")) {
