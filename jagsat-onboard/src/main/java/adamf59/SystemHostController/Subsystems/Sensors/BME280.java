@@ -185,11 +185,7 @@ public class BME280 {
             humidity = 0.0;
         }
 
-        // Output data to screen
-        System.out.printf("Temperature in Celsius : %.2f C %n", cTemp);
-        System.out.printf("Temperature in Fahrenheit : %.2f F %n", fTemp);
-        System.out.printf("Pressure : %.2f hPa %n", pressure);
-        System.out.printf("Relative Humidity : %.2f %% RH %n", humidity);
+      
 
         data_temperature_c = cTemp;
         data_temperature_f = fTemp;
@@ -207,6 +203,12 @@ public class BME280 {
         try {
 
             pushUpdate();
+
+            for(int i = 0; i < 10; i++) {
+                Thread.sleep(1000);
+                progressPercentage(i, 10);
+            }
+
 
         
         } catch (Exception e) {
@@ -256,4 +258,36 @@ public class BME280 {
     public double getHumidity() {
         return data_humidity;
     }
+
+    public static void progressPercentage(int done, int total) {
+        int size = 5;
+        String iconLeftBoundary = "[";
+        String iconDone = "=";
+        String iconRemain = ".";
+        String iconRightBoundary = "]";
+
+        if (done > total) {
+            throw new IllegalArgumentException();
+        }
+        int donePercents = (100 * done) / total;
+        int doneLength = size * donePercents / 100;
+
+        StringBuilder bar = new StringBuilder(iconLeftBoundary);
+        for (int i = 0; i < size; i++) {
+            if (i < doneLength) {
+                bar.append(iconDone);
+            } else {
+                bar.append(iconRemain);
+            }
+        }
+        bar.append(iconRightBoundary);
+
+        System.out.print("\r" + bar + " " + donePercents + "%");
+
+        if (done == total) {
+            System.out.print("\n");
+        }
+    }
+
+
 }
