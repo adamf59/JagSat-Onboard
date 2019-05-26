@@ -204,10 +204,14 @@ public class BME280 {
 
             pushUpdate();
 
+            Console.printOk("Calibrating sensor...");
+
             for(int i = 0; i < 10; i++) {
-                Thread.sleep(1000);
+                Thread.sleep(700);
                 progressPercentage(i, 10);
             }
+            System.out.println();
+            Console.printOk("Calibration done.");
 
 
         
