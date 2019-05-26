@@ -9,27 +9,18 @@ package adamf59.SystemHostController.Subsystems.Sensors;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
+import com.pi4j.io.i2c.I2CFactory.UnsupportedBusNumberException;
+
 import java.io.IOException;
 
-public class BME280
-{
-    public static void main() throws Exception
+public class BME280 {
+    public static void main() throws UnsupportedBusNumberException, IOException 
     {
-        System.out.println("Using I2C Bus "+ I2CBus.BUS_0);
-        I2CBus bus = I2CFactory.getInstance(I2CBus.BUS_0);
+       
 
         System.out.println("Using I2C Bus "+ I2CBus.BUS_1);
-        I2CBus bus1 = I2CFactory.getInstance(I2CBus.BUS_1);
-        System.out.println("Using I2C Bus "+ I2CBus.BUS_2);
-        I2CBus bus3 = I2CFactory.getInstance(I2CBus.BUS_2);
-        System.out.println("Using I2C Bus "+ I2CBus.BUS_3);
-        I2CBus bus4 = I2CFactory.getInstance(I2CBus.BUS_3);
-        System.out.println("Using I2C Bus "+ I2CBus.BUS_4);
-        I2CBus bus5 = I2CFactory.getInstance(I2CBus.BUS_4);
-        System.out.println("Using I2C Bus "+ I2CBus.BUS_5);
-        I2CBus bus6 = I2CFactory.getInstance(I2CBus.BUS_5);
-        System.out.println("Using I2C Bus "+ I2CBus.BUS_6);
-        I2CBus bus7 = I2CFactory.getInstance(I2CBus.BUS_6);
+        I2CBus bus = I2CFactory.getInstance(I2CBus.BUS_1);
+     
 
 
 
