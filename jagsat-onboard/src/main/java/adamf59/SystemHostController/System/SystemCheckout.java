@@ -46,12 +46,16 @@ public class SystemCheckout extends Command {
                     + SystemHost.getCommunications().getLastResponse());
         }
         Console.printInfo("Checking BME280 Sensor");
+        
+        
+        if(SystemHost.getBME280().test()) {
+            Console.printOk("BME280 test was passed");
+        } else {
+            Console.printErr("BME280 test failed. check this device!");
 
-        try {
-            BME280.main();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+       
 
 
         Console.printInfo("====System Check Complete====");

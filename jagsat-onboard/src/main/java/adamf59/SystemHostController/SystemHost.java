@@ -16,6 +16,7 @@ import adamf59.SystemHostController.IO.GPIO;
 import adamf59.SystemHostController.Subsystems.Avionics.Avionics;
 import adamf59.SystemHostController.Subsystems.Avionics.BallastControl;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
+import adamf59.SystemHostController.Subsystems.Sensors.BME280;
 import adamf59.SystemHostController.System.Console;
 import adamf59.SystemHostController.System.DispatcherService;
 import adamf59.SystemHostController.System.SchedulerService;
@@ -32,6 +33,8 @@ public class SystemHost {
     private static DispatcherService c_dispatcherService;
     private static SystemController c_systemController;
     
+    private static BME280 bme280;
+
     private static boolean isVerified = false;
 
     public static void main(String[] args) throws Exception {
@@ -77,14 +80,15 @@ public class SystemHost {
             c_systemController = new SystemController();
 
       
-         
-      
+            
+            
 
             GPIO.initGPIOController();
 
             s_avionics = new Avionics(0);
             s_communications = new Communications(1);
-
+            
+            bme280 = new BME280();
 
         } catch(Exception e) {
                 Console.printErr("Exception thrown in system initialization: " + " >> " + e.getCause());
@@ -144,6 +148,18 @@ public class SystemHost {
     public static boolean isJFSLVerified() {
         return isVerified;
     }
+
+    //#region EDIT THIS REGION TO ADD SENSORS
+
+    /**
+     * @return the bme280 sensor
+     */
+    public static BME280 getBME280() {
+        return bme280;
+    }
+
+    //#endregion
+
    
 
 }
