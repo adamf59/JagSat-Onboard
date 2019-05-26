@@ -15,8 +15,10 @@ public class BME280
 {
     public static void main() throws Exception
     {
+        System.out.println("Using I2C Bus "+ I2CBus.BUS_0);
+
         // Create I2C bus
-        I2CBus bus = I2CFactory.getInstance(I2CBus.BUS_2);
+        I2CBus bus = I2CFactory.getInstance(I2CBus.BUS_0);
         // Get I2C device, BME280 I2C address is 0x76(108)
         I2CDevice device = bus.getDevice(0x77);
         
