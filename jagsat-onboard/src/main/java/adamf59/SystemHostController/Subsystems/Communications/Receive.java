@@ -47,7 +47,7 @@ public class Receive extends Command {
             SystemHost.getCommunications().transmit("AT+SBDIX");
             for(int i = 0; i < 5; i++) {
                 Console.progressPercentage(i, 5);
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             }
             Console.printInfo("RockBlock Response: " + SystemHost.getCommunications().getLastResponse());
 
