@@ -28,6 +28,12 @@ import adamf59.SystemHostController.System.Console;
 
 public class Communications extends Subsystem {
 
+
+    /**
+     * How often to transmit a packet with a data point
+     */
+    private static int TRANSMIT_INTERVAL = 300000; 
+
     public static SerialConfig config = new SerialConfig();
     public static final Serial serial = SerialFactory.createInstance();
 
@@ -93,7 +99,11 @@ public class Communications extends Subsystem {
     public void execute() {
         Console.printOk("Communications subsystem updating...");
         try {
-        Thread.sleep(3200);
+        Thread.sleep(TRANSMIT_INTERVAL);
+        
+        
+        
+
     } catch (InterruptedException e) {
         e.printStackTrace();
     }

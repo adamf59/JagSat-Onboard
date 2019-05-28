@@ -5,6 +5,8 @@ package adamf59.SystemHostController.Subsystems.Sensors;
 // BME280
 // This code is designed to work with the BME280_I2CS I2C Mini Module available from ControlEverything.com.
 // https://www.controleverything.com/content/Humidity?sku=BME280_I2CS#tabs-0-product_tabset-2
+// THANKS TO https://github.com/ControlEverythingCommunity/BME280/blob/master/Java/BME280.java
+
 
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
@@ -52,6 +54,8 @@ public class BME280 {
      * Requests an update to get the most recent data from the device
      */
     public void pushUpdate() throws Exception {
+        Console.printInfo("Update pushed to BME280");
+
         // Read 24 bytes of data from address 0x88(136)
         byte[] b1 = new byte[24];
         device.read(0x88, b1, 0, 24);
@@ -203,7 +207,16 @@ public class BME280 {
         try {
 
             pushUpdate();
-
+            Console.printOk("Initial Reading Done. [ Temp F: " + getTemperatureF() + " Temp C: " + getTemperatureC() + " Pressure: " + getPressure() +  " Humidity: " + getHumidity() + " ]");
+            Console.printInfo("Calibrating BME280 to the environment");
+            for(int i = 0; i < 10; i++) {
+                Console.progressPercentage(i, 10);
+                Thread.sleep(400);
+            }
+            Console.printNewLine();
+            Console.printInfo("Calibration done.");
+            pushUpdate();
+            Console.printOk("Post-calibration readings: [ Temp F: " + getTemperatureF() + " Temp C: " + getTemperatureC() + " Pressure: " + getPressure() +  " Humidity: " + getHumidity() + " ]");
 
 
         
@@ -215,7 +228,7 @@ public class BME280 {
 
     if(getHumidity() != -90000 && getPressure() != -90000 && getTemperatureC() != -90000 && getTemperatureF() != -90000) {
 
-        Console.printOk("BME280 Test Successful. [ Temp F: " + getTemperatureF() + " Temp C: " + getTemperatureC() + " Pressure: " + getPressure() +  " Humidity: " + getHumidity() + " ]");
+        Console.printOk("BME280 Test Successful.");
         return true;
     } else {
         Console.printErr("BME 280 Test Failed. Values were out of range. [ Temp F: " + getTemperatureF() + " Temp C: " + getTemperatureC() + " Pressure: " + getPressure() +  " Humidity: " + getHumidity() + " ]");
@@ -255,35 +268,6 @@ public class BME280 {
         return data_humidity;
     }
 
-    public static void progressPercentage(int done, int total) {
-        int size = 5;
-        String iconLeftBoundary = "[";
-        String iconDone = "=";
-        String iconRemain = ".";
-        String iconRightBoundary = "]";
-
-        if (done > total) {
-            throw new IllegalArgumentException();
-        }
-        int donePercents = (100 * done) / total;
-        int doneLength = size * donePercents / 100;
-
-        StringBuilder bar = new StringBuilder(iconLeftBoundary);
-        for (int i = 0; i < size; i++) {
-            if (i < doneLength) {
-                bar.append(iconDone);
-            } else {
-                bar.append(iconRemain);
-            }
-        }
-        bar.append(iconRightBoundary);
-
-        System.out.print("\r" + bar + " " + donePercents + "%");
-
-        if (done == total) {
-            System.out.print("\n");
-        }
-    }
 
 
 }

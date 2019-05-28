@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TransmissionFactory",
+            "request": "launch",
+            "mainClass": "adamf59.SystemHostController.Subsystems.Communications.TransmissionFactory",
+            "projectName": "jagsat-onboard"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Hex",
             "request": "launch",
             "mainClass": "adamf59.Core.Hex",
