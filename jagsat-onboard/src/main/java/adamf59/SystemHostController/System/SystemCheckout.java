@@ -10,6 +10,7 @@ package adamf59.SystemHostController.System;
 import adamf59.Core.Command;
 import adamf59.SystemHostController.SystemHost;
 import adamf59.SystemHostController.Subsystems.Communications.Communications;
+import adamf59.SystemHostController.Subsystems.Communications.Receive;
 import adamf59.SystemHostController.Subsystems.Communications.Transmit;
 import adamf59.SystemHostController.Subsystems.Sensors.BME280;
 
@@ -62,6 +63,7 @@ public class SystemCheckout extends Command {
         Console.printOk("Resuming Subsystems...");
 
        
+        new Receive();
 
 
 
