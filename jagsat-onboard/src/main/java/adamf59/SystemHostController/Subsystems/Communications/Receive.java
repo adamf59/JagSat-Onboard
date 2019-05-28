@@ -21,12 +21,34 @@ public class Receive extends Command {
     public void execute() {
         try {
             SystemHost.getCommunications().transmit("AT");
+            for(int i = 0; i < 10; i++) {
+                Console.progressPercentage(i, 10);
+                Thread.sleep(90);
+            }
             Console.printInfo("RockBlock Response: " + SystemHost.getCommunications().getLastResponse());
+
+
             SystemHost.getCommunications().transmit("AT&K0");
+            for(int i = 0; i < 10; i++) {
+                Console.progressPercentage(i, 10);
+                Thread.sleep(90);
+            }
             Console.printInfo("RockBlock Response: " + SystemHost.getCommunications().getLastResponse());
+
+
             SystemHost.getCommunications().transmit("AT+SBDWT=");
+            for(int i = 0; i < 10; i++) {
+                Console.progressPercentage(i, 10);
+                Thread.sleep(90);
+            }
             Console.printInfo("RockBlock Response: " + SystemHost.getCommunications().getLastResponse());
+
+
             SystemHost.getCommunications().transmit("AT+SBDIX");
+            for(int i = 0; i < 5; i++) {
+                Console.progressPercentage(i, 5);
+                Thread.sleep(2000);
+            }
             Console.printInfo("RockBlock Response: " + SystemHost.getCommunications().getLastResponse());
 
 
