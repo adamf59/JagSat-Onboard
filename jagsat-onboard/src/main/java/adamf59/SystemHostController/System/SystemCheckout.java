@@ -63,7 +63,8 @@ public class SystemCheckout extends Command {
         Console.printOk("Resuming Subsystems...");
 
        
-        new Receive();
+        SystemHost.getSchedulerService().scheduleTask(new Receive(), SchedulerService.PRIORITY_HIGH);
+
 
 
 
